@@ -5,7 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import de from './locales/de.js';
 import en from './locales/en.js';
 import uk from './locales/uk.js';
-import ru from './locales/ru.js';
+import zh from './locales/zh.js';
 
 i18n
   .use(LanguageDetector)
@@ -15,7 +15,7 @@ i18n
       de: { translation: de },
       en: { translation: en },
       uk: { translation: uk },
-      ru: { translation: ru },
+      zh: { translation: zh },
     },
     lng: 'de', // Default language
     fallbackLng: 'en',

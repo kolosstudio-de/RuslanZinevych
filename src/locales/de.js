@@ -2,6 +2,7 @@ export default {
   nav: {
     home: 'Startseite',
     about: 'Maestro',
+    gallery: 'Galerie',
     contact: 'Kontakt',
     bookNow: 'Buchen',
     tenor: 'Ruslan Zinevych · Tenor'
@@ -15,11 +16,14 @@ export default {
     meet: 'Den Maestro kennenlernen',
     scroll: 'Scrollen'
   },
+  gallery: {
+    title: 'Kunst im Fokus'
+  },
   aboutStrip: {
     label: 'Über den Maestro',
-    quote: '"Eine Stimme von bemerkenswerter Raffinesse – dramatische Kraft gepaart mit lyrischer Anmut."',
+    quote: '„Eine Stimme von bemerkenswerter Raffinesse – dramatische Kraft gepaart mit lyrischer Anmut.“',
     desc1: 'Geboren in Czernowitz, Ukraine, bin ich Tenor, Gesangspädagoge und Kulturmanager. Zwei Jahrzehnte lang war ich erster Solist an der Nationalen Akademischen Oper Odessa und baute gleichzeitig meine internationale Karriere an ikonischen Spielstätten in ganz Europa aus.',
-    desc2: 'Als Preisträger des Antonín-Dvořák-Wettbewerbs und Inhaber des Belvedere-Sonderpreises stand ich gemeinsam mit Luciano Pavarotti, Elīna Garanča, Leo Nucci und Anna Netrebko auf der Bühne.',
+    desc2: 'Als Preisträger des Antonín-Dvořák-Wettbewerbs und Gewinner des speziellen Sigulda-Preises beim Belvedere-Gesangswettbewerb stand ich gemeinsam mit Luciano Pavarotti, Elīna Garanča, Leo Nucci und Anna Netrebko auf der Bühne.',
     fullBio: 'Vollständige Biografie'
   },
   performances: {
@@ -37,27 +41,36 @@ export default {
   masterclass: {
     label: 'Gesangsausbildung',
     title: 'Masterclasses',
-    desc: 'Einzel- und Gruppen-Masterclasses für lyrisches und dramatisches Tenor-Repertoire in Deutsch, Italienisch, Ukrainisch, Polnisch und Russisch.',
+    desc: 'Einzel- und Gruppen-Masterclasses für lyrisches und dramatisches Tenor-Repertoire in Deutsch, Italienisch, Ukrainisch, Polnisch und Französisch.',
     enquire: 'Jetzt anfragen'
   },
   aboutPage: {
     label: 'Tenor · Gesangspädagoge · Kulturmanager',
     title1: 'Künstlerische',
     title2: 'Exzellenz',
-    desc: 'Ruslan Zinevych ist ein bedeutender ukrainischer Tenor, dessen Karriere sich über renommierte Opernhäuser und Konzertsäle der Welt erstreckt. Bekannt für seine raffinierte Gesangstechnik und dramatische Vielseitigkeit, teilte er die Bühne mit legendären Persönlichkeiten der Opernwelt.',
+    desc: 'Ruslan Zinevych ist ein bekannter ukrainischer Tenor, dessen Karriere sich über renommierte Opernhäuser und Konzertsäle der Welt erstreckt. Bekannt für seine raffinierte Gesangstechnik und dramatische Vielseitigkeit, teilte er die Bühne mit legendären Persönlichkeiten der Opernwelt.',
     origin: 'Herkunft',
     originVal: 'Czernowitz, Ukraine',
     based: 'Ansässig in',
-    basedVal: 'Regensburg, Deutschland',
+    basedVal: 'Ruckäckerweg 4, 93055 Regensburg',
     voice: 'Stimmfach',
     voiceVal: 'Lyrischer Tenor',
     careerLabel: 'Internationale Karriere',
-    careerP1: 'Zwei Jahrzehnte lang (1995–2015) war Herr Zinevych erster Solist an der Nationalen Akademischen Oper Odessa. Seine internationale Karriere führte ihn an ikonische Orte wie die Royal Albert Hall (London), das Concertgebouw (Amsterdam), die Lettische Nationaloper (Riga), die Nationaloper der Ukraine und zahlreiche italienische Häuser.',
-    careerP2: 'Einer der Höhepunkte seiner Karriere war das gemeinsame Konzert mit dem legendären Luciano Pavarotti in Sassuolo, Italien. Er arbeitete auch mit Weltstars wie Elīna Garanča, Anna Netrebko und Leo Nucci zusammen.',
+    careerP1: 'Zwei Jahrzehnte lang (1995–2015) war Ruslan Zinevych erster Solist an der Nationalen Akademischen Oper Odessa. Während seiner Karriere trat er an ikonischen Orten wie der Royal Albert Hall (London), dem Concertgebouw (Amsterdam), der Lettischen Nationaloper (Riga), der Nationaloper der Ukraine und zahlreichen italienischen Häusern auf.',
+    careerP2: 'Einer der Höhepunkte seiner Karriere war das gemeinsame Konzert mit dem legendären Luciano Pavarotti in Sassuolo, Italien. Er stand auch gemeinsam mit Weltstars wie Elīna Garanča, Anna Netrebko und Leo Nucci auf der Bühne.',
     pedagogyLabel: 'Produktion & Pädagogik',
-    pedagogyP1: 'Neben dem Gesang hat Herr Zinevych außergewöhnliches Geschick in der Opernregie bewiesen. Von 2014 bis 2017 arbeitete er mit der britischen Produzentin Ellen Kent als Regieassistent für Produktionen von Tosca, Carmen und Rigoletto zusammen.',
+    pedagogyP1: 'Zusätzlich zu seiner Gesangskarriere hat sich Ruslan Zinevych als Regieassistent etabliert und an gefeierten Produktionen von Tosca, Carmen, Rigoletto, Madama Butterfly und La Traviata mitgewirkt.',
     pedagogyP2: 'Derzeit widmet er sich der Ausbildung junger Sänger an der Nationalen Musikakademie Odessa und durch internationale Masterclasses.',
     awardsLabel: 'Auszeichnungen & Anerkennung',
+    pressReviewsLabel: 'Pressestimmen',
+    pressReviews: [
+      { quote: 'Das „E lucevan le stelle“ im dritten Akt wurde von Zinevych mit meisterhafter musikalischer und emotionaler Kontrolle dargeboten.', author: 'The Oxford Culture Review', role: 'Cavaradossi (Tosca)', url: 'https://theoxfordculturereview.com/2016/02/29/review-tosca/' },
+      { quote: 'Ruslan Zinevych war als Mario hervorragend.', author: 'Blackpool Gazette', role: 'Cavaradossi (Tosca)', url: 'https://www.blackpoolgazette.co.uk/whats-on/arts-and-entertainment/review-toscagrand-theatre-blackpool-1269723' },
+      { quote: 'Ruslan Zinevych glänzte in der Rolle des jugendlichen Eisenstein.', author: 'Seen and Heard International', role: 'Eisenstein (Die Fledermaus)', url: 'https://seenandheard-international.com/2015/11/warmth-wit-and-charm-in-ellen-kents-fledermaus/' },
+      { quote: 'Ruslan Zinevych als Herzog und Larysa Zuenko als Gilda waren nahezu perfekt.', author: 'BBC Bristol', role: 'Herzog (Rigoletto)', url: 'https://www.bbc.co.uk/bristol/content/goingout/2003/10/02/rigoletto.shtml' },
+      { quote: 'Unter den männlichen Charakteren war Ruslan Zinevych als Don José zweifellos der Stärkste... es war eine Stimme von Weltrang... eine Stimme voller Kraft und Pathos.', author: 'The Oxford Culture Review', role: 'Don José (Carmen)', url: 'https://theoxfordculturereview.com/2016/03/02/review-carmen/' },
+      { quote: 'Eine Leistung, die keine Wünsche offen ließ.', author: 'Darlington & Stockton Times', role: 'Pinkerton (Madama Butterfly)', url: 'https://www.darlingtonandstocktontimes.co.uk/weekend/arts/12896413.Music_review__Madama_Butterfly__Civic_Theatre__Darlington/' }
+    ],
     langLabel: 'Sprachen',
     repLabel: 'Opernrepertoire',
     pressLabel: 'Für Agenturen & Theater',
@@ -68,8 +81,8 @@ export default {
   },
   contact: {
     label: 'Kontakt',
-    title1: 'Lassen Sie uns',
-    title2: 'gemeinsam erschaffen',
+    title1: 'Gemeinsam',
+    title2: 'Gestalten',
     desc: 'Ob Sie einen führenden Tenor, einen Gesangspädagogen oder einen kulturellen Partner suchen – ich freue mich auf Ihre Nachricht.',
     whatsappLabel: 'WhatsApp',
     whatsappTitle: 'Bevorzugter Kanal',
@@ -129,7 +142,7 @@ export default {
   ],
   repertoireData: [
     { composer: 'Puccini', roles: 'Rodolfo, Cavaradossi, Pinkerton' },
-    { composer: 'Verdi', roles: 'Riccardo, Herzog, Alfredo, Carlos, Manrico' },
+    { composer: 'Verdi', roles: 'Riccardo, Herzog, Alfredo, Don Carlos, Manrico' },
     { composer: 'Bizet', roles: 'Don José' },
     { composer: 'Tschaikowski', roles: 'Hermann, Lenski' },
     { composer: 'Mozart', roles: 'Don Basilio' },
@@ -139,16 +152,14 @@ export default {
     { composer: 'R. Strauss', roles: 'Herodes (Salome)' },
     { composer: 'Borodin', roles: 'Wladimir Igorewitsch' },
     { composer: 'Rimski-Korsakow', roles: 'Mozart (Mozart & Salieri)' },
-    { composer: 'Prokofjew', roles: 'Gennaro' },
   ],
   awardsData: [
-    { year: '1994', prize: '2. Preis', comp: 'Internationaler Antonin-Dvořák-Wettbewerb', location: 'Tschechien' },
-    { year: '1997', prize: '2. Preis', comp: 'I.-Patorzhinsky-Wettbewerb', location: 'Ukraine' },
+    { year: '1994', prize: 'Preisträger des zweiten Preises', comp: 'Internationaler Antonin-Dvořák-Wettbewerb', location: 'Tschechien' },
+    { year: '1997', prize: 'Preisträger des zweiten Preises', comp: 'I.-Patorzhinsky-Wettbewerb', location: 'Ukraine' },
     { year: '1998', prize: 'Sonderpreis „Sigulda“', comp: 'Hans-Gabor-Belvedere-Wettbewerb', location: 'Österreich' },
   ],
   languagesData: [
     { lang: 'Ukrainisch', level: 'Muttersprache' },
-    { lang: 'Russisch', level: 'Muttersprache' },
     { lang: 'Englisch', level: 'Fließend' },
     { lang: 'Italienisch', level: 'Fließend' },
     { lang: 'Polnisch', level: 'Fließend' },

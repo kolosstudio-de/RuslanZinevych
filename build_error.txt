@@ -1,0 +1,50 @@
+
+> ruslan-zinevych-portfolio@0.0.0 build
+> vite build
+
+vite v8.0.1 building client environment for production...
+[2Ktransforming...[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+3  |  @tailwind utilities;
+4  |  
+5  |  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;...
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6  |  
+7  |  @layer base {
+✓ 49 modules transformed.
+✗ Build failed in 339ms
+error during build:
+Build failed with 2 errors:
+
+[31m[PARSE_ERROR] Error:[0m Identifier `motion` has already been declared
+     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.jsx:4:10 [38;5;246m][0m
+     [38;5;246m│[0m
+ [38;5;246m  4 │[0m [38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0mmotion[38;5;249m,[0m[38;5;249m [0m[38;5;249mA[0m[38;5;249mn[0m[38;5;249mi[0m[38;5;249mm[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249mP[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mM[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249mV[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mS[0m[38;5;249mp[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249mg[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m"[0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249m-[0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m"[0m[38;5;249m;[0m
+ [38;5;240m    │[0m          ───┬──  
+ [38;5;240m    │[0m             ╰──── `motion` has already been declared here
+ [38;5;240m    │[0m 
+ [38;5;246m352 │[0m [38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0mmotion[38;5;249m,[0m[38;5;249m [0m[38;5;249mA[0m[38;5;249mn[0m[38;5;249mi[0m[38;5;249mm[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249mP[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249mc[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m"[0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249m-[0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m"[0m[38;5;249m;[0m
+ [38;5;240m    │[0m          ───┬──  
+ [38;5;240m    │[0m             ╰──── It can not be redeclared here
+[38;5;246m─────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Identifier `AnimatePresence` has already been declared
+     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.jsx:4:18 [38;5;246m][0m
+     [38;5;246m│[0m
+ [38;5;246m  4 │[0m [38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m,[0m[38;5;249m [0mAnimatePresence[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mM[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249mV[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mS[0m[38;5;249mp[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249mg[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m"[0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249m-[0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m"[0m[38;5;249m;[0m
+ [38;5;240m    │[0m                  ───────┬───────  
+ [38;5;240m    │[0m                         ╰───────── `AnimatePresence` has already been declared here
+ [38;5;240m    │[0m 
+ [38;5;246m352 │[0m [38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m,[0m[38;5;249m [0mAnimatePresence[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m"[0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249m-[0m[38;5;249mm[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m"[0m[38;5;249m;[0m
+ [38;5;240m    │[0m                  ───────┬───────  
+ [38;5;240m    │[0m                         ╰───────── It can not be redeclared here
+[38;5;246m─────╯[0m
+
+    at aggregateBindingErrorsIntoJsError (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/rolldown/dist/shared/error-BO4SlZV_.mjs:48:18)
+    at unwrapBindingResult (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/rolldown/dist/shared/error-BO4SlZV_.mjs:18:128)
+    at #build (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/rolldown/dist/shared/rolldown-build-yQC7KN8K.mjs:3311:34)
+    at async buildEnvironment (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/vite/dist/node/chunks/node.js:32817:64)
+    at async Object.build (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/vite/dist/node/chunks/node.js:33239:19)
+    at async Object.buildApp (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/vite/dist/node/chunks/node.js:33236:153)
+    at async CAC.<anonymous> (file:///Users/vasylkolos/Downloads/Ruslan%20Website/ruslan-zinevych-portfolio/node_modules/vite/dist/node/cli.js:778:3) {
+  errors: [Getter/Setter]
+}

@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'serif'],
-        sans: ['Lato', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
     },
   },

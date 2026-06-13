@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDown, Mail, Phone, MapPin, MessageSquare, Play, ChevronRight, ExternalLink, X } from 'lucide-react';
+import GalleryPage from './Gallery';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,10 +98,9 @@ const SplitText = ({ children, className = '', delay = 0 }) => {
         <React.Fragment key={i}>
           <motion.span
             className="inline-block"
-            initial={{ y: '120%', opacity: 0, rotateZ: 5 }}
-            whileInView={{ y: 0, opacity: 1, rotateZ: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: delay + i * 0.15 }}
+            initial={{ y: '120%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: delay + i * 0.12 }}
           >
             {word}
           </motion.span>
@@ -117,7 +117,7 @@ const SplitText = ({ children, className = '', delay = 0 }) => {
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
-  const langs = ['de', 'en', 'uk', 'ru'];
+  const langs = ['de', 'en', 'uk', 'zh'];
 
   return (
     <div className="flex items-center gap-2">
@@ -166,47 +166,50 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-6 transition-all duration-500"
+        className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 md:px-16 py-6 transition-all duration-500"
       >
-        <Link to="/" className="font-serif text-cream text-lg tracking-[0.2em] uppercase font-light hover:text-champagne transition-colors">
+        <Link to="/" className={`font-serif text-cream text-lg tracking-[0.2em] uppercase font-light hover:text-champagne transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           Ruslan Zinevych
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-10">
           <Link to="/" className="nav-link">{t('nav.home')}</Link>
           <Link to="/about" className={`nav-link ${isAbout ? 'text-champagne' : ''}`}>{t('nav.about')}</Link>
+          <Link to="/gallery" className={`nav-link ${location.pathname.includes('/gallery') ? 'text-champagne' : ''}`}>{t('nav.gallery') || 'Gallery'}</Link>
           <Link to="/contact" className="nav-link">{t('nav.contact')}</Link>
         </div>
 
         <div className="flex items-center gap-4 md:gap-6">
-          <LanguageSwitcher />
-          <a
-            href="https://wa.me/4915112032072"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-gold text-xs hidden md:inline-flex"
-          >
-            {t('nav.bookNow')}
-          </a>
+          <div className="hidden lg:flex items-center gap-6">
+            <LanguageSwitcher />
+            <a
+              href="https://wa.me/4915112032072"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold text-xs"
+            >
+              {t('nav.bookNow')}
+            </a>
+          </div>
 
           {/* Hamburger — mobile only */}
           <button
-            className="md:hidden flex flex-col gap-[5px] p-2 z-[60] relative"
+            className="lg:hidden flex flex-col items-center justify-center w-12 h-12 gap-[5px] z-[60] relative"
             onClick={() => setMenuOpen(o => !o)}
             aria-label="Toggle menu"
           >
             <span
-              className="block w-6 h-[1px] bg-cream transition-all duration-300 origin-center"
-              style={menuOpen ? { transform: 'translateY(6px) rotate(45deg)' } : {}}
+              className="block w-6 h-[1.5px] bg-cream transition-all duration-300 origin-center"
+              style={menuOpen ? { transform: 'translateY(6.5px) rotate(45deg)' } : {}}
             />
             <span
-              className="block w-6 h-[1px] bg-cream transition-all duration-300"
+              className="block w-6 h-[1.5px] bg-cream transition-all duration-300"
               style={menuOpen ? { opacity: 0 } : {}}
             />
             <span
-              className="block w-6 h-[1px] bg-cream transition-all duration-300 origin-center"
-              style={menuOpen ? { transform: 'translateY(-6px) rotate(-45deg)' } : {}}
+              className="block w-6 h-[1.5px] bg-cream transition-all duration-300 origin-center"
+              style={menuOpen ? { transform: 'translateY(-6.5px) rotate(-45deg)' } : {}}
             />
           </button>
         </div>
@@ -214,27 +217,28 @@ const Navbar = () => {
 
       {/* Mobile full-screen overlay */}
       <div
-        className="fixed inset-0 z-40 flex flex-col justify-center px-10 md:hidden transition-all duration-500"
+        className="fixed inset-0 z-50 flex flex-col justify-center px-10 lg:hidden transition-opacity duration-500"
         style={{
-          background: 'rgba(4,4,8,0.98)',
+          backgroundColor: '#0A0A0F',
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? 'all' : 'none',
-          backdropFilter: 'blur(12px)',
         }}
       >
         {/* Gold accent top */}
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-champagne/30" />
 
-        <nav className="flex flex-col gap-10">
+        <nav className="flex flex-col gap-6 md:gap-10">
           {[
             { to: '/', label: t('nav.home') },
             { to: '/about', label: t('nav.about') },
+            { to: '/gallery', label: t('nav.gallery') || 'Gallery' },
             { to: '/contact', label: t('nav.contact') },
           ].map(({ to, label }) => (
             <Link
               key={to}
               to={to}
-              className="font-serif italic text-cream text-5xl leading-none hover:text-champagne transition-colors duration-300"
+              onClick={() => setMenuOpen(false)}
+              className="font-serif italic text-cream text-[clamp(2.5rem,14vw,5rem)] leading-tight hover:text-champagne transition-colors duration-300"
             >
               {label}
             </Link>
@@ -256,8 +260,8 @@ const Navbar = () => {
           </a>
         </div>
 
-        <div className="absolute bottom-8 left-10">
-          <p className="font-sans text-stone text-xs tracking-widest uppercase">{t('nav.tenor')}</p>
+        <div className="absolute bottom-8 left-10 pb-[env(safe-area-inset-bottom)]">
+          <p className="font-sans text-stone text-[0.6rem] tracking-widest uppercase">{t('nav.tenor')}</p>
         </div>
       </div>
     </>
@@ -267,7 +271,7 @@ const Navbar = () => {
 const Footer = () => {
   const { t } = useTranslation();
   return (
-    <footer className="bg-obsidian border-t border-champagne/10 px-8 md:px-16 py-12">
+    <footer className="bg-obsidian border-t border-champagne/10 px-6 md:px-16 py-12">
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-10">
         <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6">
           <div>
@@ -277,6 +281,7 @@ const Footer = () => {
           <div className="flex items-center gap-6 md:gap-10 font-sans text-[0.65rem] tracking-[0.2em] uppercase">
             <Link to="/" className="text-stone hover:text-champagne transition-colors">{t('nav.home')}</Link>
             <Link to="/about" className="text-stone hover:text-champagne transition-colors">{t('nav.about')}</Link>
+            <Link to="/gallery" className="text-stone hover:text-champagne transition-colors">{t('nav.gallery') || 'Gallery'}</Link>
             <Link to="/contact" className="text-stone hover:text-champagne transition-colors">{t('nav.contact')}</Link>
           </div>
           <div className="flex items-center gap-6 font-sans text-[0.6rem] tracking-widest uppercase text-stone/40">
@@ -294,6 +299,7 @@ const Footer = () => {
 
 // ─── VIDEO MODAL ─────────────────────────────────────────────────────────────
 
+
 const VideoModal = ({ perf, onClose }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
@@ -303,27 +309,25 @@ const VideoModal = ({ perf, onClose }) => {
     document.body.style.overflow = 'hidden';
     const onKey = e => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', onKey);
-    gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' });
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
     };
   }, [onClose]);
 
-  const handleClose = () => {
-    gsap.to(overlayRef.current, { opacity: 0, duration: 0.35, ease: 'power2.in', onComplete: onClose });
-  };
-
   return (
-    <div
-      ref={overlayRef}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
-      onClick={e => { if (e.target === e.currentTarget) handleClose(); }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
       style={{ background: 'rgba(4,4,8,0.95)', backdropFilter: 'blur(16px)' }}
     >
       <div className="relative w-full max-w-5xl bg-black shadow-2xl overflow-hidden group">
         <div className="absolute top-4 right-4 z-50">
-          <button onClick={handleClose} className="w-10 h-10 flex items-center justify-center bg-black/50 backdrop-blur-md rounded-full text-cream hover:bg-champagne hover:text-obsidian transition-all">
+          <button onClick={onClose} className="w-10 h-10 flex items-center justify-center bg-black/50 backdrop-blur-md rounded-full text-cream hover:bg-champagne hover:text-obsidian transition-all">
             <X size={20} />
           </button>
         </div>
@@ -338,17 +342,17 @@ const VideoModal = ({ perf, onClose }) => {
 
           <video
             key={perf.src}
-            className="w-full h-full"
+            className="w-full h-full object-contain"
             autoPlay
-            muted
             playsInline
             controls
             preload="auto"
-            src={resolveAsset(perf.src)}
             onLoadedMetadata={() => setLoading(false)}
-            onLoadedData={() => setLoading(false)}
             onCanPlay={() => setLoading(false)}
-          />
+            onPlaying={() => setLoading(false)}
+          >
+            <source src={resolveAsset(perf.src)} type="video/mp4" />
+          </video>
         </div>
 
         <div className="p-8 border-t border-champagne/10 bg-darkcard">
@@ -365,7 +369,7 @@ const VideoModal = ({ perf, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -373,6 +377,8 @@ const VideoModal = ({ perf, onClose }) => {
 
 const PerfCard = ({ perf, onOpen }) => {
   const cardRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const el = cardRef.current;
@@ -393,24 +399,51 @@ const PerfCard = ({ perf, onOpen }) => {
     return () => observer.disconnect();
   }, []);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   return (
     <div
       ref={cardRef}
       className="perf-card border border-champagne/15 hover:border-champagne/40 transition-colors duration-500 bg-darkcard cursor-pointer group"
       onClick={() => onOpen(perf)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="relative aspect-video bg-obsidian overflow-hidden">
+        {/* Thumbnail img — reliable on all devices including iOS Safari */}
+        <img
+          src={resolveAsset(perf.src.replace('videos/video-', 'thumbnails/thumb-').replace('.mp4', '.jpg'))}
+          alt={perf.aria}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-80'}`}
+          loading="lazy"
+        />
+        {/* Video — loads and plays only on hover (desktop) */}
         <video
+          ref={videoRef}
           key={perf.src}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
           muted
           loop
           playsInline
-          preload="metadata"
-          autoPlay
-          src={resolveAsset(perf.src)}
-        />
+          preload="none"
+        >
+          <source src={resolveAsset(perf.src)} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-t from-darkcard via-transparent to-transparent pointer-events-none" />
+        
         {/* Play overlay on hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="w-14 h-14 rounded-full border border-champagne/80 flex items-center justify-center bg-black/40 backdrop-blur-sm">
@@ -449,6 +482,8 @@ const HomePage = () => {
     ? performances
     : performances.filter(p => p.filter === filter);
 
+  const timelineItems = t('timelineData', { returnObjects: true });
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Hero — very slow dramatic entrance
@@ -462,26 +497,31 @@ const HomePage = () => {
           opacity: 0, y: 50, duration: 1.8, ease: 'power3.out',
         });
       });
-      // Timeline — staggered slow drift
-      gsap.from('.tl-item', {
-        scrollTrigger: { trigger: '#timeline', start: 'top 80%' },
-        opacity: 0, x: -30, duration: 1.2, stagger: 0.22, ease: 'power3.out',
-      });
+      
+      // Timeline items — animation
+      if (document.querySelectorAll('.tl-item').length > 0) {
+        gsap.from('.tl-item', {
+          scrollTrigger: { trigger: '#timeline', start: 'top 80%' },
+          opacity: 0, x: -30, duration: 1.2, stagger: 0.22, ease: 'power3.out',
+        });
+      }
     });
     return () => ctx.revert();
-  }, []);
+  }, [timelineItems]);
 
   return (
     <div>
-      {activeVideo && <VideoModal perf={activeVideo} onClose={() => setActiveVideo(null)} />}
+      <AnimatePresence>
+        {activeVideo && <VideoModal perf={activeVideo} onClose={() => setActiveVideo(null)} />}
+      </AnimatePresence>
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative h-screen w-full overflow-hidden flex items-end">
+      <section className="relative h-screen w-full overflow-hidden flex items-center md:items-end">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50 ken-burns"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50 ken-burns"
         >
           <source src={resolveAsset('videos/video-1.mp4')} type="video/mp4" />
         </video>
@@ -491,24 +531,32 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-obsidian/60 to-transparent" />
 
         {/* Hero content */}
-        <div className="relative z-10 px-8 md:px-16 pb-20 md:pb-28 w-full max-w-5xl">
-          <p className="hero-enter section-label mb-8">{t('hero.label')}</p>
-          <h1 className="hero-title text-cream text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] leading-none tracking-tight mb-4 z-10 relative">
-            <SplitText delay={0.2}>{t('hero.name1')}</SplitText>
+        <div className="relative z-10 px-6 md:px-16 pb-8 md:pb-24 pt-20 md:pt-64 w-full max-w-5xl mx-auto text-center flex flex-col items-center">
+          <h1 className="hero-enter hero-title text-cream text-[clamp(2.5rem,10vw,8rem)] leading-[0.9] tracking-tighter mb-2 z-10 relative">
+            {t('hero.name1')}
           </h1>
-          <h1 className="hero-title text-champagne text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] leading-none tracking-tight mb-10 z-10 relative">
-            <SplitText delay={0.6}>{t('hero.name2')}</SplitText>
+          <h1 className="hero-enter hero-title text-champagne text-[clamp(2.5rem,10vw,8rem)] leading-[0.9] tracking-tighter mb-10 z-10 relative">
+            {t('hero.name2')}
           </h1>
-          <p className="hero-enter font-sans text-cream/70 text-base md:text-lg max-w-xl leading-relaxed mb-12">
-            {t('hero.subtitle')}
+
+          <p className="hero-enter font-sans text-champagne text-[0.6rem] tracking-[0.4em] uppercase mb-10 flex items-center justify-center gap-4">
+            <span className="w-10 h-[1px] bg-champagne/30" />
+            {t('hero.label')}
+            <span className="w-10 h-[1px] bg-champagne/30" />
           </p>
-          <div className="hero-enter flex flex-wrap gap-4">
-            <a href="#performances" className="btn-gold">
-              {t('hero.watch')}
-            </a>
-            <Link to="/about" className="btn-ghost">
-              {t('hero.meet')}
-            </Link>
+
+          <div className="hero-enter max-w-xl">
+            <p className="font-sans text-cream/70 text-base md:text-lg leading-relaxed mb-12">
+              {t('hero.subtitle')}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="#performances" className="btn-gold">
+                {t('hero.watch')}
+              </a>
+              <Link to="/about" className="btn-ghost">
+                {t('hero.meet')}
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -523,7 +571,7 @@ const HomePage = () => {
 
       {/* ── ABOUT STRIP ──────────────────────────────────────────── */}
       <section className="py-24 md:py-32 bg-obsidian border-y border-champagne/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 md:px-16 grid md:grid-cols-12 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-16 grid md:grid-cols-12 gap-16 items-center">
           <div className="md:col-span-7">
             <p className="section-label mb-8">{t('aboutStrip.label')}</p>
             <h2 className="font-serif italic text-cream text-4xl md:text-5xl leading-tight mb-12 will-animate">
@@ -553,7 +601,7 @@ const HomePage = () => {
 
       {/* ── PERFORMANCES GRID ───────────────────────────────────── */}
       <section id="performances" className="py-32 bg-obsidian-light">
-        <div className="max-w-7xl mx-auto px-8 md:px-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
             <div>
               <p className="section-label mb-6">{t('performances.label')}</p>
@@ -582,26 +630,35 @@ const HomePage = () => {
       </section>
 
       {/* ── CAREER TIMELINE ──────────────────────────────────────── */}
-      <section id="timeline" className="py-20 md:py-32 px-6 sm:px-8 md:px-16 max-w-5xl mx-auto">
+      <section id="timeline" className="py-20 md:py-32 px-6 sm:px-6 md:px-16 max-w-5xl mx-auto">
         <div className="will-animate mb-16">
           <p className="section-label mb-6">{t('timeline.label')}</p>
           <h2 className="font-serif italic text-cream text-5xl md:text-6xl">{t('timeline.title')}</h2>
         </div>
 
         <div className="relative">
-          {/* Vertical gold line */}
-          <div className="absolute left-[90px] top-0 bottom-0 w-[1px] bg-champagne/20 hidden md:block" />
-
-          <div className="space-y-12">
+          <div className="space-y-0">
             {(Array.isArray(t('timelineData', { returnObjects: true })) ? t('timelineData', { returnObjects: true }) : []).map((item, i) => (
-              <div key={i} className="tl-item flex flex-col md:flex-row gap-4 md:gap-12">
-                <div className="md:w-24 shrink-0 flex md:flex-col items-center md:items-end gap-3">
-                  <span className="font-sans text-champagne text-sm tracking-widest">{item.year}</span>
-                  <div className="timeline-dot hidden md:block" />
+              <div key={i} className="tl-item group flex gap-8 md:gap-16 relative">
+                {/* Year pillar */}
+                <div className="w-12 md:w-24 shrink-0 text-right font-sans text-champagne text-xs md:text-sm tracking-[0.2em] pt-1">
+                  {item.year}
                 </div>
-                <div className="pb-6 border-b border-champagne/10 flex-1">
-                  <h3 className="font-serif text-cream text-xl mb-2">{item.title}</h3>
-                  <p className="font-sans text-stone text-sm leading-relaxed">{item.desc}</p>
+
+                {/* Vertical line and dot */}
+                <div className="relative flex justify-center w-[1px] shrink-0">
+                  <div className="absolute inset-y-0 w-[1px] bg-champagne/10 shadow-[0_0_15px_rgba(201,162,82,0.1)]" />
+                  <div className="timeline-dot z-10 bg-obsidian border-champagne ring-[6px] ring-obsidian group-hover:scale-125 transition-transform duration-500 mt-2" />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 pb-16 md:pb-24 pt-0">
+                  <h3 className="font-serif text-cream text-xl md:text-2xl mb-3 group-hover:text-champagne transition-colors duration-300">
+                    {item.title}
+                  </h3>
+                  <p className="font-sans text-stone text-sm md:text-base leading-relaxed max-w-2xl">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -610,14 +667,14 @@ const HomePage = () => {
       </section>
 
       {/* ── MASTERCLASS CTA ──────────────────────────────────────── */}
-      <section className="bg-charcoal py-24 md:py-32 px-8 md:px-16 text-center">
+      <section className="bg-charcoal py-24 md:py-32 px-6 md:px-16 text-center">
         <div className="will-animate max-w-3xl mx-auto">
           <p className="section-label justify-center mb-8">{t('masterclass.label')}</p>
           <h2 className="font-serif italic text-cream text-5xl md:text-7xl mb-8">{t('masterclass.title')}</h2>
           <p className="font-sans text-cream/60 text-base md:text-lg leading-relaxed mb-12 max-w-xl mx-auto">
             {t('masterclass.desc')}
           </p>
-          <a href="mailto:ruslanzinevych@yahoo.com" className="btn-gold text-sm">
+          <a href="mailto:info@ruslanzinevych.de" className="btn-gold text-sm">
             {t('masterclass.enquire')}
           </a>
         </div>
@@ -640,10 +697,10 @@ const AboutPage = () => {
   const repertoire = Array.isArray(repertoireResult) ? repertoireResult : [];
 
   return (
-    <div className="pt-28 pb-24 px-6 sm:px-8 md:px-16 max-w-6xl mx-auto">
+    <div className="pt-24 pb-24 px-6 sm:px-6 md:px-16 max-w-6xl mx-auto">
 
       {/* Header */}
-      <div className="border-b border-champagne/20 pb-16 mb-16 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+      <div className="border-b border-champagne/20 pb-16 mb-16 grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
         <div className="md:col-span-4">
           <div className="relative aspect-[3/4] overflow-hidden">
             <img
@@ -656,7 +713,7 @@ const AboutPage = () => {
         </div>
         <div className="md:col-span-8">
           <p className="section-label mb-8">{t('aboutPage.label')}</p>
-          <h1 className="font-serif italic text-cream text-5xl md:text-7xl leading-tight mb-8">
+          <h1 className="font-serif text-cream text-5xl md:text-7xl leading-tight mb-8">
             <SplitText delay={0.2}>{t('aboutPage.title1')}</SplitText><br />
             <SplitText delay={0.4}>{t('aboutPage.title2')}</SplitText>
           </h1>
@@ -728,8 +785,50 @@ const AboutPage = () => {
         </div>
       </div>
 
+      {/* Press Reviews */}
+      <div className="about-reveal mb-20 pb-20 border-b border-champagne/20">
+        <p className="section-label mb-8">{t('aboutPage.pressReviewsLabel')}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {(Array.isArray(t('aboutPage.pressReviews', { returnObjects: true })) ? t('aboutPage.pressReviews', { returnObjects: true }) : []).map((review, i) => (
+            <motion.a
+              key={i}
+              href={review.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              className="block p-8 border border-champagne/10 bg-darkcard/50 relative group hover:border-champagne/30 transition-all duration-500 hover:-translate-y-2"
+            >
+              <div className="absolute top-0 left-0 w-1 h-0 bg-champagne group-hover:h-full transition-all duration-700" />
+              <div className="mb-6 flex justify-between items-start">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A252" strokeWidth="1.5" className="opacity-40">
+                  <path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h2v4l-4 4z" />
+                  <path d="M13 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-3c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h2v4l-4 4z" />
+                </svg>
+                <div className="p-2 rounded-full bg-champagne/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ExternalLink size={14} className="text-champagne" />
+                </div>
+              </div>
+              <p className="font-serif italic text-cream text-lg leading-relaxed mb-6">
+                {review.quote}
+              </p>
+              <div className="mt-auto">
+                <p className="font-sans text-champagne text-[0.65rem] tracking-[0.2em] uppercase font-bold mb-1">
+                  {review.author}
+                </p>
+                <p className="font-sans text-stone text-[0.6rem] tracking-widest uppercase opacity-60">
+                  {review.role}
+                </p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+
       {/* Repertoire table */}
-      <div className="about-reveal mb-20">
+      <div className="about-reveal mb-20 pb-20 border-b border-champagne/20">
         <p className="section-label mb-8">{t('aboutPage.repLabel')}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-champagne/10">
           {repertoire.map((item, i) => (
@@ -753,7 +852,7 @@ const AboutPage = () => {
         </p>
 
         <a
-          href="/ruslanzinevych/press-kit.pdf"
+          href="/press-kit.pdf"
           download="Ruslan_Zinevych_CV.pdf"
           className="btn-gold inline-flex items-center gap-3"
         >
@@ -776,11 +875,12 @@ const AboutPage = () => {
 // ─── CONTACT PAGE ─────────────────────────────────────────────────────────────
 
 const ContactPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isZh = i18n.language && i18n.language.startsWith('zh');
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 sm:px-8 md:px-16">
+    <div className="min-h-screen pt-24 pb-24 px-6 sm:px-6 md:px-16">
       <div className="max-w-5xl mx-auto">
 
         {/* Page heading */}
@@ -826,7 +926,7 @@ const ContactPage = () => {
 
           {/* Email */}
           <a
-            href="mailto:ruslanzinevych@yahoo.com"
+            href="mailto:info@ruslanzinevych.de"
             className="group bg-obsidian hover:bg-darkcard transition-colors duration-500 p-10 flex flex-col gap-6"
           >
             <div className="flex items-center gap-4">
@@ -837,7 +937,7 @@ const ContactPage = () => {
             </div>
             <div>
               <p className="font-serif text-cream text-2xl mb-1 group-hover:text-champagne transition-colors duration-300">{t('contact.emailLabel')}</p>
-              <p className="font-sans text-stone text-sm">ruslanzinevych@yahoo.com</p>
+              <p className="font-sans text-stone text-sm">info@ruslanzinevych.de</p>
             </div>
             <p className="font-sans text-cream/50 text-xs leading-relaxed">
               {t('contact.emailDesc')}
@@ -891,6 +991,31 @@ const ContactPage = () => {
               <p className="font-sans text-stone text-[0.6rem] tracking-widest uppercase">{t('contact.timezone')}</p>
             </div>
           </div>
+
+          {/* WeChat — Chinese version only */}
+          {isZh && (
+            <div className="group bg-obsidian hover:bg-darkcard transition-colors duration-500 p-10 flex flex-col gap-6 col-span-1 md:col-span-2">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 border border-champagne/30 group-hover:border-champagne/70 flex items-center justify-center transition-colors duration-300">
+                  {/* WeChat icon */}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-champagne">
+                    <path d="M8.5 11.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM15.5 11.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="#C9A252"/>
+                    <path d="M2 9c0-3.866 4.477-7 10-7s10 3.134 10 7c0 3.866-4.477 7-10 7a12.9 12.9 0 0 1-3.29-.424L5 17l1.394-2.79A6.87 6.87 0 0 1 2 9Z" stroke="#C9A252" strokeWidth="1.5" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <p className="font-sans text-champagne text-[0.6rem] tracking-[0.4em] uppercase">{t('contact.wechatTitle')}</p>
+              </div>
+              <div>
+                <p className="font-serif text-cream text-2xl mb-1">{t('contact.wechatLabel')}</p>
+                <p className="font-sans text-stone text-sm">{t('contact.wechatId')}</p>
+              </div>
+              <p className="font-sans text-cream/50 text-xs leading-relaxed">{t('contact.wechatDesc')}</p>
+              <div className="flex items-center gap-2 text-champagne/60 mt-auto">
+                <span className="font-sans text-xs tracking-widest uppercase">{t('contact.wechatAdd')}</span>
+                <ChevronRight size={12} />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Masterclass enquiry highlight */}
@@ -932,15 +1057,15 @@ const ImpressumPage = () => {
   const { t } = useTranslation();
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
-    <div className="min-h-screen pt-40 pb-24 px-8 md:px-16 max-w-4xl mx-auto">
+    <div className="min-h-screen pt-28 pb-24 px-6 md:px-16 max-w-4xl mx-auto">
       <h1 className="font-serif italic text-cream text-5xl mb-12">{t('legal.impressum')}</h1>
       <div className="prose prose-invert max-w-none font-sans text-cream/70 leading-relaxed space-y-8">
         <section>
           <h2 className="text-champagne text-xs tracking-widest uppercase mb-4">{t('legal.sections.angaben')}</h2>
           <p>
             Ruslan Zinevych<br />
-            [STRASSE NR]<br />
-            [PLZ] Regensburg<br />
+            Ruckäckerweg 4<br />
+            93055 Regensburg<br />
             Deutschland
           </p>
         </section>
@@ -948,7 +1073,7 @@ const ImpressumPage = () => {
           <h2 className="text-champagne text-xs tracking-widest uppercase mb-4">{t('legal.sections.kontakt')}</h2>
           <p>
             Telefon: +49 151 120 320 72<br />
-            E-Mail: ruslanzinevych@yahoo.com
+            E-Mail: info@ruslanzinevych.de
           </p>
         </section>
         <section>
@@ -970,7 +1095,7 @@ const PrivacyPage = () => {
   const { t } = useTranslation();
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
-    <div className="min-h-screen pt-40 pb-24 px-8 md:px-16 max-w-4xl mx-auto">
+    <div className="min-h-screen pt-28 pb-24 px-6 md:px-16 max-w-4xl mx-auto">
       <h1 className="font-serif italic text-cream text-5xl mb-12">{t('legal.privacy')}</h1>
       <div className="prose prose-invert max-w-none font-sans text-cream/70 leading-relaxed space-y-8 text-sm">
         <section>
@@ -979,13 +1104,28 @@ const PrivacyPage = () => {
         </section>
         <section>
           <h2 className="text-champagne text-xs tracking-widest uppercase mb-4">2. Hosting</h2>
-          <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter: IONOS SE, Elgendorfer Str. 57, 56410 Montabaur.</p>
+          <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter: <strong>IONOS SE</strong>, Elgendorfer Str. 57, 56410 Montabaur. Details entnehmen Sie der Datenschutzerklärung von IONOS: <a href="https://www.ionos.de/terms-gtc/terms-privacy" target="_blank" className="underline">https://www.ionos.de/terms-gtc/terms-privacy</a>.</p>
         </section>
         <section>
           <h2 className="text-champagne text-xs tracking-widest uppercase mb-4">3. Allgemeine Hinweise und Pflichtinformationen</h2>
           <p>
             Der Verantwortliche für die Datenverarbeitung auf dieser Website ist:<br />
-            Ruslan Zinevych, Regensburg. E-Mail: ruslanzinevych@yahoo.com
+            <strong>Ruslan Zinevych</strong>, Ruckäckerweg 4, 93055 Regensburg. E-Mail: info@ruslanzinevych.de
+          </p>
+          <p className="mt-4">
+            Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche <strong>Auskunft</strong> über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf <strong>Berichtigung oder Löschung</strong> dieser Daten.
+          </p>
+        </section>
+        <section>
+          <h2 className="text-champagne text-xs tracking-widest uppercase mb-4">4. Bereitstellung der Website (Lokale Schriften)</h2>
+          <p>
+            Diese Website nutzt zur einheitlichen Darstellung von Schriftarten ausschließlich lokal bereitgestellte Schriftarten. Eine Verbindung zu Servern von Google Fonts oder anderen Drittanbietern findet nicht statt. Dadurch wird keine IP-Adresse an externe Server übertragen.
+          </p>
+        </section>
+        <section>
+          <h2 className="text-champagne text-xs tracking-widest uppercase mb-4">5. Kontakt via WhatsApp / E-Mail</h2>
+          <p>
+            Wenn Sie uns per E-Mail oder WhatsApp kontaktieren, werden Ihre Angaben zwecks Bearbeitung der Anfrage gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt.
           </p>
         </section>
       </div>
@@ -997,6 +1137,7 @@ const PrivacyPage = () => {
 };
 
 const CookieBanner = () => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -1036,8 +1177,8 @@ const CookieBanner = () => {
 
 const PageWrapper = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, filter: 'blur(5px)' }}
-    animate={{ opacity: 1, filter: 'blur(0px)' }}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     exit={{ opacity: 0, transition: { duration: 0.4 } }}
     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     className="w-full bg-obsidian"
@@ -1053,6 +1194,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
+        <Route path="/gallery" element={<PageWrapper><GalleryPage /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
         <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
         <Route path="/privacy" element={<PageWrapper><PrivacyPage /></PageWrapper>} />
@@ -1063,7 +1205,7 @@ const AnimatedRoutes = () => {
 
 function App() {
   return (
-    <Router basename="/ruslanzinevych">
+    <Router basename="/">
       <div className="grain min-h-screen bg-obsidian text-cream">
         <CustomCursor />
         <Navbar />

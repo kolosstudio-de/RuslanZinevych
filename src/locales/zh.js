@@ -1,0 +1,185 @@
+export default {
+  nav: {
+    home: '首页',
+    about: '大师',
+    gallery: '画廊',
+    contact: '联系我们',
+    bookNow: '立即预订',
+    tenor: 'Ruslan Zinevych · 男高音'
+  },
+  hero: {
+    label: '乌克兰男高音',
+    name1: 'Ruslan',
+    name2: 'Zinevych',
+    subtitle: '从皇家阿尔伯特音乐厅到阿姆斯特丹国家音乐厅——与歌剧界的传奇同台献艺。男高音歌唱家、导演及声乐教育家。',
+    watch: '观看演出',
+    meet: '认识大师',
+    scroll: '向下滑动'
+  },
+  gallery: {
+    title: '聚焦艺术'
+  },
+  aboutStrip: {
+    label: '关于大师',
+    quote: '"这是一种极其精致的声音——戏剧性的力量与抒情的优雅完美融合。"',
+    desc1: '我出生于乌克兰切尔诺夫策，是一名男高音歌唱家、声乐教育家及文化管理者。二十年来我在敖德萨国家学术歌剧院担任首席独唱，同时在欧洲各大标志性场馆拓展我的国际职业生涯。',
+    desc2: '作为安东宁·德沃夏克比赛的获奖者以及贝尔维第歌唱比赛特别西古尔达奖的获得者，我曾与卢恰诺·帕瓦罗蒂（Luciano Pavarotti）、艾琳娜·嘉兰莎（Elīna Garanča）、里奥·努奇（Leo Nucci）和安娜·奈瑞贝科（Anna Netrebko）同台演出。',
+    fullBio: '完整传记'
+  },
+  performances: {
+    label: '舞台风采',
+    title: '演出',
+    all: '全部',
+    nowPlaying: '正在播放',
+    role: '角色',
+    loading: '艺术加载中...'
+  },
+  timeline: {
+    label: '职业生涯',
+    title: '音乐人生'
+  },
+  masterclass: {
+    label: '声乐教育',
+    title: '大师班',
+    desc: '提供抒情和戏剧男高音曲目的个人及团体大师班，提供德语、意大利语、乌克兰语、波兰语和法语教学。',
+    enquire: '立即咨询'
+  },
+  aboutPage: {
+    label: '男高音 · 声乐教育家 · 文化管理者',
+    title1: '艺术',
+    title2: '卓越',
+    desc: 'Ruslan Zinevych 是一位著名的乌克兰男高音歌唱家，其职业生涯遍及全球负有盛名的歌剧院和音乐厅。以其精致的声乐技巧和戏剧多面性而闻名，他曾与歌剧界的传奇人物同台献艺。',
+    origin: '出生地',
+    originVal: '乌克兰，切尔诺夫策',
+    based: '所在地',
+    basedVal: '雷根斯堡，德国 (Ruckäckerweg 4, 93055 Regensburg)',
+    voice: '声部类型',
+    voiceVal: '抒情男高音',
+    careerLabel: '国际职业生涯',
+    careerP1: '在二十年间（1995–2015），Ruslan Zinevych 担任敖德萨国家学术歌剧芭蕾舞剧院的首席独唱。在他的职业生涯中，他曾在许多标志性场馆演出，包括伦敦皇家阿尔伯特音乐厅、阿姆斯特丹国家音乐厅、拉脱维亚国家歌剧院、乌克兰国家歌剧院以及众多意大利剧院。',
+    careerP2: '他职业生涯中最令人瞩目的亮点之一是在意大利萨索洛与传奇人物卢恰诺·帕瓦罗蒂同台献唱。他曾与艾琳娜·嘉兰莎、安娜·奈瑞贝科和里奥·努奇等世界著名艺术家同台演出。',
+    pedagogyLabel: '制作与教学',
+    pedagogyP1: '除了声乐生涯，Ruslan Zinevych 还确立了自己作为助理导演的地位，参与了《托斯卡》、《卡门》、《弄臣》、《蝴蝶夫人》和《茶花女》等备受赞誉的制作。',
+    pedagogyP2: '目前，他致力于在敖德萨国家音乐学院和通过国际大师班培养年轻的声乐人才。',
+    awardsLabel: '奖项与认可',
+    pressReviewsLabel: '媒体评价',
+    pressReviews: [
+      { quote: '第三幕的“星光灿烂”（E lucevan le stelle），Zinevych 表现出了大师级的音乐和情感控制力。', author: 'The Oxford Culture Review', role: '卡瓦拉多西 (托斯卡)', url: 'https://theoxfordculturereview.com/2016/02/29/review-tosca/' },
+      { quote: 'Ruslan Zinevych 饰演的马里奥非常出色。', author: 'Blackpool Gazette', role: '卡瓦拉多西 (托斯卡)', url: 'https://www.blackpoolgazette.co.uk/whats-on/arts-and-entertainment/review-toscagrand-theatre-blackpool-1269723' },
+      { quote: 'Ruslan Zinevych 将那个带点孩子气的艾森斯坦演绎得非常完美。', author: 'Seen and Heard International', role: '艾森斯坦 (蝙蝠)', url: 'https://seenandheard-international.com/2015/11/warmth-wit-and-charm-in-ellen-kents-fledermaus/' },
+      { quote: 'Ruslan Zinevych 饰演的公爵和 Larysa Zuenko 饰演的吉尔达近乎完美。', author: 'BBC Bristol', role: '公爵 (弄臣)', url: 'https://www.bbc.co.uk/bristol/content/goingout/2003/10/02/rigoletto.shtml' },
+      { quote: '在所有男性角色中，最引人注目的无疑是 Ruslan Zinevych 饰演的男主角唐·何塞……他的声音尽显名家风范，充满了力量与悲怆。', author: 'The Oxford Culture Review', role: '唐·何塞 (卡门)', url: 'https://theoxfordculturereview.com/2016/03/02/review-carmen/' },
+      { quote: '一场没有任何遗憾的演出。', author: 'Darlington & Stockton Times', role: '平克顿 (蝴蝶夫人)', url: 'https://www.darlingtonandstocktontimes.co.uk/weekend/arts/12896413.Music_review__Madama_Butterfly__Civic_Theatre__Darlington/' }
+    ],
+    langLabel: '语言',
+    repLabel: '歌剧曲目',
+    pressLabel: '致经纪人与剧院',
+    pressTitle: '官方媒体宣传包',
+    pressDesc: '下载完整的个人简历，包含详细生平与全部剧目信息。',
+    download: '下载 PDF',
+    back: '返回首页'
+  },
+  contact: {
+    label: '与我们联系',
+    title1: '携手',
+    title2: '创作',
+    desc: '无论您是在寻找一位首席男高音、一位声乐教育家还是一个文化合作伙伴——我都非常期待与您交流。',
+    whatsappLabel: '首选渠道',
+    whatsappTitle: 'WhatsApp',
+    whatsappDesc: '发送信息以获得最快回复——演出预订、大师班及合作。',
+    email: '电子邮件',
+    emailLabel: '电子邮箱',
+    emailDesc: '用于正式咨询、媒体材料及详细的预订请求。',
+    sendEmail: '发送邮件',
+    phone: '电话',
+    phoneLabel: '直拨热线',
+    phoneDesc: '周一至周五，9:00–17:00 中欧时间 (CET/CEST)。请先通过 WhatsApp 确认通话时间。',
+    call: '拨打电话',
+    location: '地点',
+    locationLabel: '所在地',
+    locationDesc: '可接受欧洲及国际范围的演出邀请。',
+    timezone: '中欧时间 · CET/CEST (UTC+1 / UTC+2)',
+    mcLabel: '声乐教育',
+    mcTitle: '大师班咨询',
+    mcDesc: '提供男高音曲目的个人和团体大师班，支持5种语言。',
+    mcEnquire: '通过 WhatsApp 咨询',
+    wechatTitle: '微信',
+    wechatLabel: '微信联系',
+    wechatDesc: '添加微信与我联系，进行演出预订、大师班及合作咨询。',
+    wechatId: '微信号：ruslanzin',
+    wechatAdd: '添加微信'
+  },
+  footer: {
+    subtitle: '男高音 · 声乐教育家 · 雷根斯堡',
+    impressum: '版本说明',
+    privacy: '隐私政策',
+    rights: '版权所有'
+  },
+  cookies: {
+    title: '本网站使用 cookie 以提供最佳的用户体验。',
+    desc: '使用我们的网站即表示您同意我们的',
+    policyLink: '隐私政策',
+    policyAgree: '。',
+    accept: '接受'
+  },
+  performancesData: [
+    { num: '01', aria: '冰凉的小手', role: '鲁道夫', opera: '波西米亚人', composer: '普契尼', filter: 'Puccini', src: 'videos/video-1.mp4' },
+    { num: '02', aria: '奇妙的和谐', role: '卡瓦拉多西', opera: '托斯卡', composer: '普契尼', filter: 'Puccini', src: 'videos/video-2.mp4' },
+    { num: '03', aria: '为你受苦是甜蜜的', role: '卡瓦拉多西', opera: '托斯卡 — 第三幕二重唱', composer: '普契尼', filter: 'Puccini', src: 'videos/video-3.mp4' },
+    { num: '04', aria: '我就在这里 (二重唱)', role: '里卡多', opera: '假面舞会 — 第二幕', composer: '威尔第', filter: 'Verdi', src: 'videos/video-4.mp4' },
+    { num: '05', aria: '你不知道 (二重唱)', role: '里卡多', opera: '假面舞会', composer: '威尔第', filter: 'Verdi', src: 'videos/video-5.mp4' },
+    { num: '06', aria: '告诉我说那是忠诚的', role: '里卡多', opera: '假面舞会 — 第一幕', composer: '威尔第', filter: 'Verdi', src: 'videos/video-6.mp4' },
+    { num: '07', aria: '你扔给我的花', role: '唐·何塞', opera: '卡门', composer: '比才', filter: 'Bizet', src: 'videos/video-7.mp4' },
+    { num: '08', aria: '艾森斯坦出场', role: '艾森斯坦', opera: '蝙蝠', composer: '小约翰·施特劳斯', filter: 'Strauss', src: 'videos/video-8.mp4' },
+    { num: '09', aria: '钟表场景', role: '艾森斯坦', opera: '蝙蝠', composer: '小约翰·施特劳斯', filter: 'Strauss', src: 'videos/video-9.mp4' },
+    { num: '10', aria: '我的太阳', role: '', opera: '那不勒斯民歌', composer: '迪·卡普阿', filter: 'Other', src: 'videos/video-10.mp4' },
+  ],
+  timelineData: [
+    { year: '1992', title: '敖德萨国立音乐学院', desc: '师从 Mykola Ogrenich 大师学习。获得声乐表演音乐硕士学位。' },
+    { year: '1995', title: '敖德萨国家学术歌剧院', desc: '连续二十年作为首席独唱，履历卓越。' },
+    { year: '1999', title: '国际舞台首秀', desc: '马林斯基剧院、拉脱维亚国家歌剧院、乌克兰国家歌剧院及意大利众多剧院。' },
+    { year: '2000', title: '阿姆斯特丹国家音乐厅', desc: '与瓦拉广播交响乐团举办音乐会。此外还于拉脱维亚、斯洛文尼亚及摩尔多瓦国家交响乐团演出。' },
+    { year: '2002', title: '与卢恰诺·波瓦罗蒂合作', desc: '在意大利萨索洛与帕瓦罗蒂大师举行联合演唱会。' },
+    { year: '2003', title: '伦敦皇家阿尔伯特音乐厅', desc: '在全球最具盛名的音乐厅之一登台献唱。' },
+    { year: '2014', title: '助理导演生涯', desc: '于利物浦帝国剧院、曼彻斯特及格拉斯哥等地担任《托斯卡》、《卡门》、《蝴蝶夫人》和《弄臣》的助理导演。' },
+    { year: '2019', title: '吉首大学 (中国)', desc: '受聘为声乐教授，参与国际文化交流项目。' },
+    { year: '2021', title: '理查·施特劳斯 — 莎乐美 (希律)', desc: '在乌克兰文化基金会支持下，参演备受赞誉的制作。' },
+  ],
+  repertoireData: [
+    { composer: '普契尼', roles: '鲁道夫, 卡瓦拉多西, 平克顿' },
+    { composer: '威尔第', roles: '里卡多, 公爵, 阿尔弗雷多, 唐·卡洛, 曼里科' },
+    { composer: '比才', roles: '唐·何塞' },
+    { composer: '柴可夫斯基', roles: '赫尔曼, 连斯基' },
+    { composer: '莫扎特', roles: '唐·巴西利奥' },
+    { composer: '多尼采蒂', roles: '埃德加多, 内莫里诺' },
+    { composer: '穆索尔斯基', roles: '格里戈里, 舒伊斯基, 圣愚' },
+    { composer: '小约翰·施特劳斯', roles: '艾森斯坦' },
+    { composer: '理查·施特劳斯', roles: '希律王 (莎乐美)' },
+    { composer: '鲍罗丁', roles: '弗拉基米尔·伊戈列维奇' },
+    { composer: '里姆斯基-科萨科夫', roles: '莫扎特 (莫扎特与萨列里)' },
+  ],
+  awardsData: [
+    { year: '1994', prize: '二等奖', comp: '安东宁·德沃夏克国际音乐比赛', location: '捷克共和国' },
+    { year: '1997', prize: '二等奖', comp: '伊万·帕托尔任斯基比赛', location: '乌克兰' },
+    { year: '1998', prize: '“西古尔达”特别奖', comp: '汉斯·加博尔·贝尔维第国际歌唱比赛', location: '奥地利' },
+  ],
+  languagesData: [
+    { lang: '乌克兰语', level: '母语' },
+    { lang: '俄语', level: '母语' },
+    { lang: '英语', level: '精通' },
+    { lang: '意大利语', level: '精通' },
+    { lang: '波兰语', level: '精通' },
+    { lang: '法语', level: '流利' },
+    { lang: '德语', level: '流利' },
+  ],
+  legal: {
+    impressum: '版本说明',
+    privacy: '隐私政策',
+    back: '返回首页',
+    sections: {
+      angaben: '根据 TMG 第 5 条的详细信息',
+      kontakt: '联系方',
+      verantwortlich: '根据 RStV 第 55 条第 2 款负责'
+    }
+  }
+};
