@@ -2,8 +2,9 @@ import os
 import sys
 from PIL import Image
 
-src_dir = "/Users/vasylkolos/Downloads/Ruslan Website/фото вебсайт"
-dst_dir = "/Users/vasylkolos/Downloads/Ruslan Website/ruslan-zinevych-portfolio/public/gallery"
+src_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "фото вебсайт"))
+dst_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "public", "gallery"))
+json_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "src", "galleryData.json"))
 
 if not os.path.exists(dst_dir):
     os.makedirs(dst_dir)
@@ -56,7 +57,6 @@ for fname in files:
         print(f"Error processing {fname}: {e}")
 
 import json
-json_path = "/Users/vasylkolos/Downloads/Ruslan Website/ruslan-zinevych-portfolio/src/galleryData.json"
 with open(json_path, 'w', encoding='utf-8') as f:
     json.dump(gallery_data, f, indent=2)
 
