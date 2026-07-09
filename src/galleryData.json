@@ -247,36 +247,36 @@
   {
     "id": "36",
     "src": "gallery/gallery-36.jpg",
-    "width": 1600,
-    "height": 1063,
+    "width": 1067,
+    "height": 1600,
     "alt": "Ruslan Zinevych #36"
   },
   {
     "id": "37",
     "src": "gallery/gallery-37.jpg",
-    "width": 960,
-    "height": 720,
+    "width": 1600,
+    "height": 1063,
     "alt": "Ruslan Zinevych #37"
   },
   {
     "id": "38",
     "src": "gallery/gallery-38.jpg",
-    "width": 1600,
-    "height": 1200,
+    "width": 960,
+    "height": 720,
     "alt": "Ruslan Zinevych #38"
   },
   {
     "id": "39",
     "src": "gallery/gallery-39.jpg",
-    "width": 1200,
-    "height": 1600,
+    "width": 1600,
+    "height": 1200,
     "alt": "Ruslan Zinevych #39"
   },
   {
     "id": "40",
     "src": "gallery/gallery-40.jpg",
-    "width": 1600,
-    "height": 1200,
+    "width": 1200,
+    "height": 1600,
     "alt": "Ruslan Zinevych #40"
   },
   {
@@ -297,21 +297,21 @@
     "id": "43",
     "src": "gallery/gallery-43.jpg",
     "width": 1600,
-    "height": 1067,
+    "height": 1200,
     "alt": "Ruslan Zinevych #43"
   },
   {
     "id": "44",
     "src": "gallery/gallery-44.jpg",
-    "width": 1067,
-    "height": 1600,
+    "width": 1600,
+    "height": 1067,
     "alt": "Ruslan Zinevych #44"
   },
   {
     "id": "45",
     "src": "gallery/gallery-45.jpg",
-    "width": 1600,
-    "height": 899,
+    "width": 1067,
+    "height": 1600,
     "alt": "Ruslan Zinevych #45"
   },
   {
@@ -325,14 +325,14 @@
     "id": "47",
     "src": "gallery/gallery-47.jpg",
     "width": 1600,
-    "height": 1067,
+    "height": 899,
     "alt": "Ruslan Zinevych #47"
   },
   {
     "id": "48",
     "src": "gallery/gallery-48.jpg",
-    "width": 640,
-    "height": 426,
+    "width": 1600,
+    "height": 1067,
     "alt": "Ruslan Zinevych #48"
   },
   {
@@ -345,43 +345,50 @@
   {
     "id": "50",
     "src": "gallery/gallery-50.jpg",
-    "width": 426,
-    "height": 640,
+    "width": 640,
+    "height": 426,
     "alt": "Ruslan Zinevych #50"
   },
   {
     "id": "51",
     "src": "gallery/gallery-51.jpg",
-    "width": 640,
-    "height": 426,
+    "width": 426,
+    "height": 640,
     "alt": "Ruslan Zinevych #51"
   },
   {
     "id": "52",
     "src": "gallery/gallery-52.jpg",
-    "width": 1600,
-    "height": 1200,
+    "width": 640,
+    "height": 426,
     "alt": "Ruslan Zinevych #52"
   },
   {
     "id": "53",
     "src": "gallery/gallery-53.jpg",
-    "width": 1189,
-    "height": 806,
+    "width": 1600,
+    "height": 1200,
     "alt": "Ruslan Zinevych #53"
   },
   {
     "id": "54",
     "src": "gallery/gallery-54.jpg",
-    "width": 1080,
-    "height": 1600,
+    "width": 1189,
+    "height": 806,
     "alt": "Ruslan Zinevych #54"
   },
   {
     "id": "55",
     "src": "gallery/gallery-55.jpg",
+    "width": 1080,
+    "height": 1600,
+    "alt": "Ruslan Zinevych #55"
+  },
+  {
+    "id": "56",
+    "src": "gallery/gallery-56.jpg",
     "width": 1138,
     "height": 547,
-    "alt": "Ruslan Zinevych #55"
+    "alt": "Ruslan Zinevych #56"
   }
 ]
