@@ -1,16 +1,36 @@
-# React + Vite
+# Ruslan Zinevych — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Официальный сайт тенора Руслана Зиневича: **https://ruslanzinevych.de**
 
-Currently, two official plugins are available:
+Vite + React + Tailwind. Хостинг — Vercel, деплой автоматический: любой пуш
+в ветку `main` собирает и публикует сайт.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Как обновить сайт
 
-## React Compiler
+```bash
+git add -A
+git commit -m "описание изменений"
+git push
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Через ~1 минуту изменения живые. Статус сборок: https://vercel.com/info-96752013s-projects/ruslan-zinevych-portfolio
 
-## Expanding the ESLint configuration
+## Как добавить фото в галерею
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Положить оригиналы в папку `../фото вебсайт/`
+2. Запустить `python3 process_images.py` (нужен Pillow: `pip install pillow`)
+3. Скрипт сожмёт фото в `public/gallery/` и обновит `src/galleryData.json`
+4. Закоммитить и запушить
+
+Порядок фото: сначала список `FEATURED` в `process_images.py` (лучшие кадры),
+остальные — по алфавиту. Файл `фото на главную страницу.jpg` в галерею не
+попадает — это фон главной страницы (`public/hero.jpg`).
+
+## Локальная разработка
+
+```bash
+npm install
+npm run dev       # дев-сервер
+npm run build     # сборка в dist/
+npm run preview   # предпросмотр сборки
+```
