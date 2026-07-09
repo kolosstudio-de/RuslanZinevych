@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -21,6 +21,17 @@ const resolveAsset = (path) => {
 
 const ImageModal = ({ images, currentIndex, onClose, onNavigate }) => {
   const image = images[currentIndex];
+
+  // Preload neighbours so arrow navigation feels instant
+  useEffect(() => {
+    [currentIndex - 1, currentIndex + 1].forEach(i => {
+      const neighbour = images[(i + images.length) % images.length];
+      if (neighbour) {
+        const img = new Image();
+        img.src = resolveAsset(neighbour.src);
+      }
+    });
+  }, [currentIndex, images]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -90,9 +101,36 @@ const ImageModal = ({ images, currentIndex, onClose, onNavigate }) => {
   );
 };
 
+// Responsive column count matching the previous sm/lg/xl breakpoints
+const getColumnCount = () => {
+  if (window.matchMedia('(min-width: 1280px)').matches) return 4;
+  if (window.matchMedia('(min-width: 1024px)').matches) return 3;
+  if (window.matchMedia('(min-width: 640px)').matches) return 2;
+  return 1;
+};
+
 const GalleryPage = () => {
   const { t } = useTranslation();
   const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const [columnCount, setColumnCount] = useState(getColumnCount);
+
+  useEffect(() => {
+    const onResize = () => setColumnCount(getColumnCount());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // True masonry: each image goes to the currently shortest column, so the
+  // curated order in galleryData reads left-to-right across the top.
+  const columns = useMemo(() => {
+    const cols = Array.from({ length: columnCount }, () => ({ h: 0, items: [] }));
+    galleryData.forEach((img, index) => {
+      const target = cols.reduce((a, b) => (b.h < a.h ? b : a));
+      target.items.push({ ...img, index });
+      target.h += img.height / img.width;
+    });
+    return cols.map(c => c.items);
+  }, [columnCount]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -144,38 +182,42 @@ const GalleryPage = () => {
       </div>
 
       {/* Masonry Grid */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
-        {galleryData.map((img, index) => (
-          <motion.div
-            key={img.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: Math.min(index * 0.04, 0.8) }}
-            className="break-inside-avoid shadow-lg transition-shadow duration-500 cursor-pointer overflow-hidden group bg-[#111118]"
-            onClick={() => openLightbox(index)}
-          >
-            <div className="relative overflow-hidden w-full h-auto">
-              {/* Aspect ratio padding for smooth loading */}
-              <div style={{ paddingBottom: `${(img.height / img.width) * 100}%` }}>
-                <img
-                  src={resolveAsset(img.src)}
-                  alt={img.alt}
-                  className="absolute inset-0 w-full h-full object-cover will-change-transform
-                    md:grayscale-[30%] md:group-hover:grayscale-0 md:group-hover:scale-[1.03] md:transition-all md:duration-700 md:ease-out"
-                  loading="lazy"
-                />
-              </div>
+      <div className="flex items-start gap-4 md:gap-6">
+        {columns.map((col, ci) => (
+          <div key={ci} className="flex-1 flex flex-col gap-4 md:gap-6 min-w-0">
+            {col.map((img) => (
+              <motion.div
+                key={img.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: Math.min(img.index * 0.04, 0.8) }}
+                className="shadow-lg transition-shadow duration-500 cursor-pointer overflow-hidden group bg-[#111118]"
+                onClick={() => openLightbox(img.index)}
+              >
+                <div className="relative overflow-hidden w-full h-auto">
+                  {/* Aspect ratio padding for smooth loading */}
+                  <div style={{ paddingBottom: `${(img.height / img.width) * 100}%` }}>
+                    <img
+                      src={resolveAsset(img.src)}
+                      alt={img.alt}
+                      className="absolute inset-0 w-full h-full object-cover will-change-transform
+                        md:grayscale-[30%] md:group-hover:grayscale-0 md:group-hover:scale-[1.03] md:transition-all md:duration-700 md:ease-out"
+                      loading="lazy"
+                    />
+                  </div>
 
-              {/* Hover overlay — desktop only (no hover on touch) */}
-              <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none items-center justify-center">
-                <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
-                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                  </svg>
+                  {/* Hover overlay — desktop only (no hover on touch) */}
+                  <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none items-center justify-center">
+                    <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
         ))}
       </div>
       

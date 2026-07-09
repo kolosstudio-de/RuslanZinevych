@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDown, Mail, Phone, MapPin, MessageSquare, Play, ChevronRight, ExternalLink, X } from 'lucide-react';
-import GalleryPage from './Gallery';
+const GalleryPage = lazy(() => import('./Gallery'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -516,11 +516,20 @@ const HomePage = () => {
       </AnimatePresence>
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative h-screen w-full overflow-hidden flex items-center md:items-end">
+        {/* Mobile: static hero photo (video is desktop-only) */}
+        <img
+          src={resolveAsset('hero.jpg')}
+          alt=""
+          aria-hidden="true"
+          className="md:hidden absolute inset-0 w-full h-full object-cover opacity-40 ken-burns"
+          style={{ objectPosition: '55% 25%' }}
+        />
         <video
           autoPlay
           loop
           muted
           playsInline
+          poster={resolveAsset('hero.jpg')}
           className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50 ken-burns"
         >
           <source src={resolveAsset('videos/video-1.mp4')} type="video/mp4" />
@@ -1194,7 +1203,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
-        <Route path="/gallery" element={<PageWrapper><GalleryPage /></PageWrapper>} />
+        <Route path="/gallery" element={<PageWrapper><Suspense fallback={<div className="min-h-screen bg-obsidian" />}><GalleryPage /></Suspense></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
         <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
         <Route path="/privacy" element={<PageWrapper><PrivacyPage /></PageWrapper>} />
