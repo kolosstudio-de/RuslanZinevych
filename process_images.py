@@ -14,6 +14,13 @@ valid_exts = {'.jpg', '.jpeg', '.png', '.webp', '.heic'}
 # Files that must not appear in the gallery (used elsewhere on the site)
 EXCLUDE = {
     "фото на главную страницу.jpg",  # hero image on the home page
+    "DSC00657.jpg",  # near-duplicate of DSC00636.jpg (same pose, different expression)
+}
+
+# Source EXIF orientation is wrong for these — use the raw pixels as-is
+# instead of applying exif_transpose.
+IGNORE_EXIF_ORIENTATION = {
+    "image0.jpeg",
 }
 
 # Curated order: strongest stage/concert shots lead the gallery.
@@ -53,8 +60,10 @@ for fname in ordered:
     src_path = os.path.join(src_dir, fname)
     try:
         with Image.open(src_path) as img:
-            # Respect EXIF orientation (phone photos are otherwise rotated)
-            img = ImageOps.exif_transpose(img)
+            # Respect EXIF orientation (phone photos are otherwise rotated),
+            # except for known-bad tags that rotate the image the wrong way.
+            if fname not in IGNORE_EXIF_ORIENTATION:
+                img = ImageOps.exif_transpose(img)
             if img.mode != 'RGB':
                 img = img.convert('RGB')
 

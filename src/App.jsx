@@ -519,20 +519,11 @@ const HomePage = () => {
       </AnimatePresence>
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative h-screen w-full overflow-hidden flex items-center md:items-end">
-        {/* Mobile: static hero photo (video is desktop-only) */}
-        <img
-          src={resolveAsset('hero.jpg')}
-          alt=""
-          aria-hidden="true"
-          className="md:hidden absolute inset-0 w-full h-full object-cover opacity-40 ken-burns"
-          style={{ objectPosition: '55% 25%' }}
-        />
         <video
           autoPlay
           loop
           muted
           playsInline
-          poster={resolveAsset('hero.jpg')}
           className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50 ken-burns"
         >
           <source src={resolveAsset('videos/video-1.mp4')} type="video/mp4" />
@@ -600,9 +591,9 @@ const HomePage = () => {
           <div className="md:col-span-5 will-animate">
             <div className="relative aspect-[3/4] overflow-hidden bg-charcoal">
               <img
-                src={resolveAsset('maestro.jpg')}
+                src={resolveAsset('portrait-main.jpg')}
                 alt="Ruslan Zinevych"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ken-burns" style={{ objectPosition: 'center 12%' }}
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ken-burns" style={{ objectPosition: 'center 20%' }}
               />
               <div className="absolute inset-0 border border-champagne/20 pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-obsidian/80 to-transparent" />
