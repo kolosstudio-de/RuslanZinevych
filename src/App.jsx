@@ -126,7 +126,10 @@ const LanguageSwitcher = () => {
         return (
           <React.Fragment key={lang}>
             <button
-              onClick={() => i18n.changeLanguage(lang)}
+              onClick={() => {
+                try { localStorage.setItem('langManuallySet', '1'); } catch { /* ignore */ }
+                i18n.changeLanguage(lang);
+              }}
               className={`font-sans text-[0.6rem] tracking-[0.2em] uppercase transition-colors ${isActive ? 'text-champagne font-bold' : 'text-stone hover:text-cream'}`}
             >
               {lang}
